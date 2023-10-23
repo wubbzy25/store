@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const formatter = new Intl.NumberFormat('co-US', {
   style: 'currency',
-  currency: 'USD',
+  currency: 'COP',
 });
 
 interface CurrencyProps {
