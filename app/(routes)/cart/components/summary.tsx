@@ -35,20 +35,12 @@ const CheckoutSummary = () => {
   }, 0);
   
   const onCheckout = async () => {
-    try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/checkout`, {
-        address,
-        phoneNumber,
-        paymentMethod,
-      });
-      console.log(response);
-  
-      // Procesar la respuesta de la API (puedes mostrar un mensaje de confirmación, redireccionar, etc.)
-    } catch (error) {
-      // Manejar errores en la solicitud
-      console.error('Error al procesar el formulario de pago:', error);
-    }
-  };
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
+      productIds: items.map((item) => item.id)
+    });
+
+    window.location = response.data.url;
+  }
   
   return (
     <div className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
