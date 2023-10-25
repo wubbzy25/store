@@ -27,7 +27,10 @@ const CheckoutSummary = () => {
   const onCheckout = async () => {
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
-        productIds: items.map((item) => item.id)
+        productIds: items.map((item) => item.id),
+        address,
+        phoneNumber,
+        paymentMethod,
       });
   
       // Procesar la respuesta de la API (puedes mostrar un mensaje de confirmación, redireccionar, etc.)
