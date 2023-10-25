@@ -7,9 +7,18 @@ import useCart from '@/hooks/use-cart';
 import { toast } from 'react-hot-toast';
 
 const CheckoutSummary = () => {
-  const searchParams = useSearchParams();
+   const router = useRouter();
   const items = useCart((state) => state.items);
   const removeAll = useCart((state) => state.removeAll);
+
+useEffect(() => {
+    // Verificar si el parámetro 'success' está presente en la URL
+    const successParam = router.query.success;
+    if (successParam) {
+      toast.success('Payment completed.');
+      removeAll();
+    }
+  }, [router.query.success, removeAll]);
   
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
