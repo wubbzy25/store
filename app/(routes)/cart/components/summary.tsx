@@ -6,6 +6,7 @@ import Button from "@/components/ui/button";
 import Currency from "@/components/ui/currency";
 import useCart from "@/hooks/use-cart";
 import { toast } from "react-hot-toast";
+import CheckoutForm from './CheckoutForm';
 
 const Summary = () => {
   const searchParams = useSearchParams();
@@ -32,7 +33,6 @@ const Summary = () => {
       productIds: items.map((item) => item.id)
     });
 
-    window.location = response.data.url;
   }
 
   return ( 
@@ -47,6 +47,7 @@ const Summary = () => {
           <div className="text-base font-medium text-gray-900">Total del pedido</div>
          <Currency value={totalPrice} />
         </div>
+        <CheckoutForm />
       </div>
       <Button onClick={onCheckout} disabled={items.length === 0} className="w-full mt-6">
         Pagar
