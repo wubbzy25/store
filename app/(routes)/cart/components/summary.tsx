@@ -19,16 +19,6 @@ const CheckoutSummary = () => {
     setPaymentMethod(event.target.value);
   };
   
-  useEffect(() => {
-    if (searchParams.get('success')) {
-      toast.success('Payment completed.');
-      removeAll();
-    }
-  
-    if (searchParams.get('canceled')) {
-      toast.error('Something went wrong.');
-    }
-  }, [searchParams, removeAll]);
   
   const totalPrice = items.reduce((total, item) => {
     return total + Number(item.price);
@@ -36,7 +26,7 @@ const CheckoutSummary = () => {
   
   const onCheckout = async () => {
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/checkout`, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
         address,
         phoneNumber,
         paymentMethod,
