@@ -6,7 +6,7 @@ const CheckoutForm = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('credit-card');
 
-  const handlePaymentMethodChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePaymentMethodChange = (event: React.ChangeEvent<HTMLInputElement> ) => {
     setPaymentMethod(event.target.value);
   };
 
