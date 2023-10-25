@@ -36,11 +36,12 @@ const CheckoutSummary = () => {
   
   const onCheckout = async () => {
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/checkout`, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
         address,
         phoneNumber,
         paymentMethod,
       });
+      console.log(response);
   
       // Procesar la respuesta de la API (puedes mostrar un mensaje de confirmación, redireccionar, etc.)
     } catch (error) {
