@@ -7,7 +7,6 @@ import useCart from '@/hooks/use-cart';
 
 import Summary from './components/summary'
 import CartItem from './components/cart-item';
-import CheckoutForm from './components/checkout-form';
 
 export const revalidate = 0;
 
@@ -36,7 +35,6 @@ const CartPage = () => {
                   <CartItem key={item.id} data={item} />
                 ))}
               </ul>
-              <CheckoutForm />
             </div>
             <Summary />
           </div>
