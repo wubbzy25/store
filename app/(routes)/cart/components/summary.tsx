@@ -26,7 +26,7 @@ const CheckoutSummary = () => {
   
   const onCheckout = async () => {
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/checkout`, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
         address,
         phoneNumber,
         paymentMethod,
