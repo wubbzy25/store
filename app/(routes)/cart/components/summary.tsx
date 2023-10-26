@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation';
 import Button from '@/components/ui/button';
@@ -14,6 +14,8 @@ const CheckoutSummary = () => {
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('credit-card');
+
+  const formRef = useRef(null);
   
   const handlePaymentMethodChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPaymentMethod(event.target.value);
@@ -36,6 +38,7 @@ const CheckoutSummary = () => {
        if(response.status === 200) {
         toast.success('Pago completado');
          removeAll();
+         formRef.current.reset();
        }
   
       // Procesar la respuesta de la API (puedes mostrar un mensaje de confirmación, redireccionar, etc.)
@@ -53,6 +56,7 @@ const CheckoutSummary = () => {
           <div className="text-base font-medium text-gray-900">Total del pedido</div>
           <Currency value={totalPrice} />
         </div>
+         <form ref={formRef}>
         <div>
           <h2 className="text-lg font-medium text-gray-900">Información de Pago</h2>
           <div className="mt-4">
@@ -108,6 +112,7 @@ const CheckoutSummary = () => {
               </label>
             </div>
           </div>
+          </form>
         </div>
       </div>
       <Button onClick={onCheckout} disabled={items.length === 0} className="w-full mt-6">
