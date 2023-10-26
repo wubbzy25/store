@@ -7,15 +7,9 @@ import useCart from '@/hooks/use-cart';
 import { toast } from 'react-hot-toast';
 
 const CheckoutSummary = () => {
-   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
   const removeAll = useCart((state) => state.removeAll);
-  useEffect(() => {
-    if (searchParams.get('success')) {
-      toast.success('Payment completed.');
-      removeAll();
-    }
-  }, [searchParams, removeAll]);
+  
   
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -38,6 +32,11 @@ const CheckoutSummary = () => {
         phoneNumber,
         paymentMethod,
       });
+
+       if(response.status === 200) {
+        toast.success('Pago completado');
+         removeAll();
+       }
   
       // Procesar la respuesta de la API (puedes mostrar un mensaje de confirmación, redireccionar, etc.)
     } catch (error) {
