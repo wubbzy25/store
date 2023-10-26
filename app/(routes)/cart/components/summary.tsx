@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation';
 import Button from '@/components/ui/button';
@@ -38,10 +38,7 @@ const CheckoutSummary = () => {
        if(response.status === 200) {
         toast.success('Pago completado');
          removeAll();
-          formRef.current.reset(); // Restablecer el formulario
-        setAddress(''); // Limpiar el estado
-        setPhoneNumber(''); // Limpiar el estado
-        setPaymentMethod('credit-card');
+
        }
   
       // Procesar la respuesta de la API (puedes mostrar un mensaje de confirmación, redireccionar, etc.)
@@ -51,7 +48,7 @@ const CheckoutSummary = () => {
     }
   };
   
-  return (
+   return (
   <div
       className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"
     >
@@ -121,6 +118,8 @@ const CheckoutSummary = () => {
       <Button onClick={onCheckout} disabled={items.length === 0} className="w-full mt-6">
         Pagar
       </Button>
+    </div>
+    </div>
     </div>
   );
 }
