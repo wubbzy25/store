@@ -56,21 +56,73 @@ const CheckoutSummary = () => {
       className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"
     >
       <h2 className="text-lg font-medium text-gray-900">
-        Order summary
+        Resumen del pedido
       </h2>
       <div className="mt-6 space-y-4">
         <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-          <div className="text-base font-medium text-gray-900">Order total</div>
+          <div className="text-base font-medium text-gray-900">Total del pedido</div>
          <Currency value={totalPrice} />
         </div>
+        <div>
+<h2 className="text-lg font-medium text-gray-900">Información de Pago</h2>
+<div className="mt-4">
+  <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+    Dirección de Envío
+  </label>
+  <input
+    type="text"
+    id="address"
+    name="address"
+    value={address}
+    onChange={(e) => setAddress(e.target.value)}
+    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+  />
+</div>
+<div className="mt-4">
+  <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
+    Número de Teléfono
+  </label>
+  <input
+    type="tel"
+    id="phoneNumber"
+    name="phoneNumber"
+    value={phoneNumber}
+    onChange={(e) => setPhoneNumber(e.target.value)}
+    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+  />
+</div>
+<div className="mt-4">
+  <label className="block text-sm font-medium text-gray-700">Método de Pago</label>
+  <div className="mt-2 space-x-4">
+    <label className="inline-flex items-center">
+      <input
+        type="radio"
+        name="paymentMethod"
+        value="credit-card"
+        checked={paymentMethod === 'credit-card'}
+        onChange={handlePaymentMethodChange}
+        className="text-blue-500 form-radio"
+      />
+      Tarjeta de Crédito
+    </label>
+    <label className="inline-flex items-center">
+      <input
+        type="radio"
+        name="paymentMethod"
+        value="paypal"
+        checked={paymentMethod === 'paypal'}
+        onChange={handlePaymentMethodChange}
+        className="text-blue-500 form-radio"
+      />
+      PayPal
+    </label>
+  </div>
       </div>
       <Button onClick={onCheckout} disabled={items.length === 0} className="w-full mt-6">
-        Checkout
+        Pagar
       </Button>
     </div>
   );
 }
-  );
-};
 
 export default CheckoutSummary;
