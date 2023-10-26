@@ -116,6 +116,7 @@ const CheckoutSummary = () => {
             </div>
           </div>
           </form>
+           </div>
         </div>
       <Button onClick={onCheckout} disabled={items.length === 0} className="w-full mt-6">
         Pagar
