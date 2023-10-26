@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+iimport React, { useState} from 'react';
 import axios from 'axios';
-import { useSearchParams } from 'next/navigation';
 import Button from '@/components/ui/button';
 import Currency from '@/components/ui/currency';
 import useCart from '@/hooks/use-cart';
@@ -13,10 +12,6 @@ const CheckoutSummary = () => {
   
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('credit-card');
-  const handlePaymentMethodChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPaymentMethod(event.target.value);
-  };
   
   
   const totalPrice = items.reduce((total, item) => {
@@ -29,7 +24,6 @@ const CheckoutSummary = () => {
         productIds: items.map((item) => item.id),
         address,
         phoneNumber,
-        paymentMethod,
       });
 
        if(response.status === 200) {
@@ -85,33 +79,6 @@ const CheckoutSummary = () => {
     className="mt-1 p-2 border border-gray-300 rounded-md w-full"
   />
 </div>
-<div className="mt-4">
-  <label className="block text-sm font-medium text-gray-700">Método de Pago</label>
-  <div className="mt-2 space-x-4">
-    <label className="inline-flex items-center">
-      <input
-        type="radio"
-        name="paymentMethod"
-        value="credit-card"
-        checked={paymentMethod === 'credit-card'}
-        onChange={handlePaymentMethodChange}
-        className="text-blue-500 form-radio"
-      />
-      Tarjeta de Crédito
-    </label>
-    <label className="inline-flex items-center">
-      <input
-        type="radio"
-        name="paymentMethod"
-        value="paypal"
-        checked={paymentMethod === 'paypal'}
-        onChange={handlePaymentMethodChange}
-        className="text-blue-500 form-radio"
-      />
-      PayPal
-    </label>
-  </div>
-      </div>
       <Button onClick={onCheckout} disabled={items.length === 0} className="w-full mt-6">
         Pagar
       </Button>
