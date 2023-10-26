@@ -38,7 +38,10 @@ const CheckoutSummary = () => {
        if(response.status === 200) {
         toast.success('Pago completado');
          removeAll();
-         formRef.current.reset();
+          formRef.current.reset(); // Restablecer el formulario
+        setAddress(''); // Limpiar el estado
+        setPhoneNumber(''); // Limpiar el estado
+        setPaymentMethod('credit-card');
        }
   
       // Procesar la respuesta de la API (puedes mostrar un mensaje de confirmación, redireccionar, etc.)
