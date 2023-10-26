@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation';
 import Button from '@/components/ui/button';
@@ -8,18 +7,15 @@ import useCart from '@/hooks/use-cart';
 import { toast } from 'react-hot-toast';
 
 const CheckoutSummary = () => {
-   const router = useRouter();
+   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
   const removeAll = useCart((state) => state.removeAll);
-
-useEffect(() => {
-    // Verificar si el parámetro 'success' está presente en la URL
-    const successParam = router.query.success;
-    if (successParam) {
+  useEffect(() => {
+    if (searchParams.get('success')) {
       toast.success('Payment completed.');
       removeAll();
     }
-  }, [router.query.success, removeAll]);
+  }, [searchParams, removeAll]);
   
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
